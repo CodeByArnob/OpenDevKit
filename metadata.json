@@ -1,0 +1,6 @@
+{
+  "name": "OfflineKit — Local-First Developer Toolkit",
+  "description": "Open-source offline-first developer toolkit with IndexedDB explorer, sync queue simulator, schema-validated JSON backups, and PWA diagnostics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

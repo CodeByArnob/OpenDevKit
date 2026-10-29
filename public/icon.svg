@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A1024" />
+      <stop offset="50%" stop-color="#0E1733" />
+      <stop offset="100%" stop-color="#060913" />
+    </linearGradient>
+    <linearGradient id="accent" x1="96" y1="96" x2="416" y2="416" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="55%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#A855F7" />
+    </linearGradient>
+    <linearGradient id="glass" x1="128" y1="120" x2="384" y2="392" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.28" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.06" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#bg)" />
+  <rect x="20" y="20" width="472" height="472" rx="96" stroke="url(#glass)" stroke-width="3" />
+  <!-- Database cylinders / Liquid layers -->
+  <path d="M136 176C136 149.49 189.726 128 256 128C322.274 128 376 149.49 376 176V224C376 250.51 322.274 272 256 272C189.726 272 136 250.51 136 224V176Z" fill="url(#accent)" fill-opacity="0.25" stroke="url(#accent)" stroke-width="12" />
+  <path d="M136 256C136 282.51 189.726 304 256 304C322.274 304 376 282.51 376 256V328C376 354.51 322.274 376 256 376C189.726 376 136 354.51 136 328V256Z" fill="url(# glass)" stroke="#38BDF8" stroke-width="12" stroke-linejoin="round" />
+  <!-- Offline / Local sync lightning checkmark -->
+  <circle cx="356" cy="348" r="56" fill="#0A1024" stroke="url(#accent)" stroke-width="10" />
+  <path d="M336 348L350 362L378 334" stroke="#38BDF8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

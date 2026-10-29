@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+/* CRITICAL: Bind Tailwind v4 `dark:` utilities to the `.dark` class on <html>
+   rather than the OS `prefers-color-scheme` media query so manual theme switching
+   updates every component and text element immediately and deterministically. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root,
+  html.light {
+    color-scheme: light;
+    --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+    /* Light Mode — Daylight Frosted Glass (High-Contrast WCAG AA+) */
+    --bg-canvas: #eef3f9;
+    --bg-canvas-subtle: #e2eaf4;
+    --glass-surface: rgba(255, 255, 255, 0.88);
+    --glass-surface-elevated: rgba(255, 255, 255, 0.96);
+    --glass-surface-hover: rgba(241, 245, 249, 0.96);
+    --surface-subtle: rgba(15, 23, 42, 0.045);
+    --surface-input: #ffffff;
+    --surface-code: #f1f5f9;
+    --glass-border: rgba(15, 23, 42, 0.13);
+    --glass-border-strong: rgba(15, 23, 42, 0.22);
+    --glass-specular: rgba(255, 255, 255, 0.95);
+    --glass-shadow: 0 12px 32px -8px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.05);
+
+    /* High-Contrast Light Mode Typography Tokens */
+    --text-heading: #090d16;    /* Contrast ~18:1 on white glass */
+    --text-primary: #0f172a;    /* Contrast ~16:1 on white glass */
+    --text-secondary: #334155;  /* Contrast ~9.2:1 on white glass */
+    --text-muted: #475569;      /* Contrast ~6.5:1 on white glass (exceeds 4.5:1 AA) */
+    --text-placeholder: #64748b;
+
+    --accent-primary: #0284c7;
+    --accent-secondary: #4f46e5;
+  }
+
+  html.dark {
+    color-scheme: dark;
+    /* Dark Mode — iOS 26 Midnight Liquid Glass (High-Contrast WCAG AA+) */
+    --bg-canvas: #060913;
+    --bg-canvas-subtle: #0b1120;
+    --glass-surface: rgba(15, 23, 42, 0.82);
+    --glass-surface-elevated: rgba(19, 29, 52, 0.92);
+    --glass-surface-hover: rgba(30, 41, 69, 0.88);
+    --surface-subtle: rgba(255, 255, 255, 0.06);
+    --surface-input: rgba(9, 14, 28, 0.85);
+    --surface-code: rgba(6, 10, 22, 0.88);
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-border-strong: rgba(148, 163, 184, 0.28);
+    --glass-specular: rgba(255, 255, 255, 0.16);
+    --glass-shadow: 0 20px 44px -12px rgba(2, 6, 23, 0.82), 0 4px 12px -2px rgba(2, 6, 23, 0.6);
+
+    /* High-Contrast Dark Mode Typography Tokens */
+    --text-heading: #ffffff;    /* Contrast ~17:1 on midnight glass */
+    --text-primary: #f1f5f9;    /* Contrast ~15:1 on midnight glass */
+    --text-secondary: #cbd5e1;  /* Contrast ~10.4:1 on midnight glass */
+    --text-muted: #94a3b8;      /* Contrast ~5.8:1 on midnight glass (exceeds 4.5:1 AA) */
+    --text-placeholder: #64748b;
+
+    --accent-primary: #38bdf8;
+    --accent-secondary: #818cf8;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    transition: background-color 180ms cubic-bezier(0.16, 1, 0.3, 1), color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: var(--font-display);
+    color: var(--text-heading);
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  input, select, textarea {
+    color: var(--text-primary);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--text-placeholder);
+    opacity: 1;
+  }
+
+  select option {
+    background-color: var(--bg-canvas-subtle);
+    color: var(--text-primary);
+  }
+}
+
+/* Liquid Glass Architectural Primitives */
+.liquid-glass {
+  background: var(--glass-surface);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 0 var(--glass-specular);
+  color: var(--text-primary);
+}
+
+.liquid-glass-elevated {
+  background: var(--glass-surface-elevated);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid var(--glass-border-strong);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 0 var(--glass-specular);
+  color: var(--text-primary);
+}
+
+.liquid-glass-interactive {
+  background: var(--glass-surface);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 0 var(--glass-specular);
+  color: var(--text-primary);
+  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1), border-color 160ms cubic-bezier(0.16, 1, 0.3, 1), background-color 160ms cubic-bezier(0.16, 1, 0.3, 1), color 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-interactive:hover:not(:disabled) {
+  background: var(--glass-surface-hover);
+  border-color: var(--glass-border-strong);
+}
+
+.liquid-glass-pill {
+  background: var(--glass-surface-elevated);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--glass-border-strong);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 0 var(--glass-specular);
+  color: var(--text-primary);
+}
+
+/* Semantic Theme Utility Classes for Guaranteed Contrast */
+.text-th-heading {
+  color: var(--text-heading);
+}
+.text-th-primary {
+  color: var(--text-primary);
+}
+.text-th-secondary {
+  color: var(--text-secondary);
+}
+.text-th-muted {
+  color: var(--text-muted);
+}
+.bg-th-subtle {
+  background-color: var(--surface-subtle);
+}
+.bg-th-input {
+  background-color: var(--surface-input);
+}
+.bg-th-code {
+  background-color: var(--surface-code);
+}
+.border-th-subtle {
+  border-color: var(--glass-border);
+}
+.border-th-strong {
+  border-color: var(--glass-border-strong);
+}
+
+/* Ambient Background Mesh */
+.ambient-canvas {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  background-image:
+    radial-gradient(at 12% 8%, rgba(56, 189, 248, 0.10) 0px, transparent 45%),
+    radial-gradient(at 88% 14%, rgba(99, 102, 241, 0.10) 0px, transparent 48%),
+    radial-gradient(at 52% 92%, rgba(139, 92, 246, 0.06) 0px, transparent 50%);
+}
+
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Custom Subtle Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.55);
+}
